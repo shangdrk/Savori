@@ -16,7 +16,7 @@ public class FragmentAccount extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(
-                R.layout.fragment_default, container, false);
+                R.layout.fragment_account, container, false);
 
         return rootView;
     }
