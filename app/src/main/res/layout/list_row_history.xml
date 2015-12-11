@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/row_frame"
+    android:id="@+id/history_row_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/history_row_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxHeight="300dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:src="@drawable/ramen"/>
+        android:src="@drawable/ramen" />
+
+    <TextView
+        android:id="@+id/history_row_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_above="@+id/history_row_desc"
+        android:text="Super Delicious Ramen"
+        android:textSize="25sp"
+        android:background="#BBEEEEEE"/>
+
+    <TextView
+        android:id="@+id/history_row_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:layout_alignBottom="@+id/history_row_food"
+        android:text="Order total: $15.75 • Dec 11, 12:00PM"
+        android:background="#BBEEEEEE"/>
+
+    <ImageView
+        android:id="@+id/history_row_seller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="62dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:src="@drawable/seller"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@id/history_row_desc"/>
 
 </RelativeLayout>

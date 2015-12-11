@@ -12,6 +12,8 @@ import com.zoray.savori.R;
 
 public class FragmentHistory extends Fragment {
 
+    public final static String TAG = "FRAGMENT_HISTORY";
+
     private FragmentTabHost tabHost;
 
     @Nullable
