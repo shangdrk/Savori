@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zoray.savori.R;
-import com.zoray.savori.data.Item;
+import com.zoray.savori.data.SearchResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,17 @@ import java.util.List;
  * Created by amandayin.
  */
 
-public class SearchRecyclerViewAdapter extends  RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder>{
+public class SearchRecyclerViewAdapter
+        extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder>{
+
+    private Context context;
+    private List<SearchResult> searchResults;
+
+    public SearchRecyclerViewAdapter(Context context){
+        this.context = context;
+        searchResults = new ArrayList<>();
+
+    }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
@@ -29,37 +39,29 @@ public class SearchRecyclerViewAdapter extends  RecyclerView.Adapter<SearchRecyc
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View row = LayoutInflater.from(context).inflate(
-                R.layout.item_row, parent, false
+                R.layout.list_row_search_result, parent, false
         );
         return new ViewHolder(row);
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return searchResults.size();
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Item item = items.get(position);
+        SearchResult item = searchResults.get(position);
         holder.tvName.setText(item.getName());
         holder.cbBought.setChecked(item.isBought());
         holder.cbBought.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,
-                        "Item " + position,
+                        "SearchResult " + position,
                         Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private Context context;
-    private List<Item> items;
-    public SearchRecyclerViewAdapter(Context context){
-        this.context = context;
-        items = new ArrayList<Item>();
-
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

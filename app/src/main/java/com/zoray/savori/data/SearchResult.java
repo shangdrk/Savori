@@ -1,9 +1,6 @@
 package com.zoray.savori.data;
 
-/**
- * Created by amandayin on 12/10/15.
- */
-public class Item {
+public class SearchResult {
 
     private String name;
     private boolean bought;
@@ -25,7 +22,7 @@ public class Item {
         return bought;
     }
 
-    public Item(String name, boolean bought) {
+    public SearchResult(String name, boolean bought) {
 
         this.name = name;
         this.bought = bought;
