@@ -56,7 +56,6 @@ public class ResultActivity extends AppCompatActivity {
                     for (int i = 0; i <= objects.size() - 1; ++i) {
                         searchResultIDs.add(objects.get(i).getObjectId());
                     }
-
                 } else {
 
                 }
@@ -70,9 +69,7 @@ public class ResultActivity extends AppCompatActivity {
             }
 
         });
-
-        Log.d("mylog", "test 6=============");
-    }
+}
 
     /*@Override
     public boolean onOptionsItemSelected(MenuItem item)
