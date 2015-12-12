@@ -21,11 +21,19 @@ import com.zoray.savori.fragments.FragmentSearchResult;
 public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
+    private Bundle fragmentBundle = null;
 
     public MainFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
+
+    public MainFragmentPagerAdapter(FragmentManager fm, Context context, Bundle data) {
+        super(fm);
+        this.context = context;
+        this.fragmentBundle = data;
+    }
+
 
     @Override
     public Fragment getItem(int position) {
@@ -61,5 +69,12 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
         ss.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return ss;
+    }
+
+    public Fragment displaySearchResultFragment(Bundle bundle) {
+        Log.d("mylog", "display search result?");
+        Fragment fm = new FragmentSearchResult();
+        fm.setArguments(bundle);
+        return fm;
     }
 }

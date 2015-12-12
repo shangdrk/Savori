@@ -29,8 +29,6 @@ public class FragmentSearchResult extends Fragment {
 
         Log.d("mylog", "enter fmSearchResult?");
 
-        // result of the search TODO
-
         ArrayList<String> resultIDs = getArguments().getStringArrayList("resultIDs");
         SearchResult searchResult = new SearchResult(resultIDs.get(0),false);
         SearchResult searchResult2 = new SearchResult(resultIDs.get(1),false);
