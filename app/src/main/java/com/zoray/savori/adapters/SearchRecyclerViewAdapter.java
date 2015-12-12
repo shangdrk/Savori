@@ -31,6 +31,12 @@ public class SearchRecyclerViewAdapter
 
     }
 
+    public SearchRecyclerViewAdapter(Context context, List<SearchResult> results){
+        this.context = context;
+        this.searchResults = results;
+
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);
