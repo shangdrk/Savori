@@ -5,8 +5,35 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvRsDt"
+        android:id="@+id/dishId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/dishName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/dishPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/dishParseId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/dishImage"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:scaleType="fitXY" />
+
+    <Button
+        android:id="@+id/btnOrder"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Place Order"/>
 
 </LinearLayout>
