@@ -33,6 +33,7 @@ public class FragmentSearchResult extends Fragment {
         Log.d("mylog", "enter fmSearchResult?");
 
         // result of the search TODO
+<<<<<<< HEAD
 
         ArrayList<String> resultIDs = getArguments().getStringArrayList("resultIDs");
         SearchResult searchResult = new SearchResult(resultIDs.get(0),false);
@@ -49,6 +50,31 @@ public class FragmentSearchResult extends Fragment {
 
 
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+=======
+        String searchResultString = getArguments().getString("SEARCH_RESULT");
+        SearchResult searchResult = new SearchResult(searchResultString,false);
+        List<SearchResult> list = new ArrayList<SearchResult>();
+        list.add(searchResult);
+        list.add(searchResult);
+
+        View rootView = inflater.inflate(
+                R.layout.fragment_default, container, false);
+
+        final SearchView searchView = (SearchView) rootView.findViewById(R.id.default_search);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        //searchView.requestFocusFromTouch();
+
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+
+        //TODO
+
+>>>>>>> b33d8f59630e5ed35e81c003a6055ec8f6586775
         SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(getContext(),list);
 
         recyclerView.setHasFixedSize(false);
