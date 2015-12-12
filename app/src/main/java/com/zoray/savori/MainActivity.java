@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            Log.d("mylog", "start search?");
             String query = intent.getStringExtra(SearchManager.QUERY);
             showResults(query);
         }else
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+        Log.d("mylog", "exit on create but why?");
     }
 
     private void showResults(String query) {
@@ -45,7 +47,27 @@ public class MainActivity extends AppCompatActivity {
         // Query your data set and show results
         // ...
 
+        Bundle bundle = new Bundle();
+        bundle.putString("SEARCH_RESULT", "From Activity");
 
+        pagerAdapter = new MainFragmentPagerAdapter(
+                getSupportFragmentManager(), getApplicationContext(),bundle
+        );
+        viewPager = (ViewPager) findViewById(R.id.main_container);
+
+        viewPager.setAdapter(pagerAdapter);
+
+
+
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tabs);
+
+        tabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                tabLayout.setupWithViewPager(viewPager);
+            }
+        });
+        Log.d("mylog", "finish show result?");
     }
 
 }
