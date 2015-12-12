@@ -35,6 +35,13 @@ public class FragmentSignUp extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         ivBack = (ImageView) rootView.findViewById(R.id.ivBack_arrow);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
         firstName = (EditText) rootView.findViewById(R.id.signUp_firstName);
         lastName = (EditText) rootView.findViewById(R.id.signUp_lastName);
         email = (EditText) rootView.findViewById(R.id.signUp_email);

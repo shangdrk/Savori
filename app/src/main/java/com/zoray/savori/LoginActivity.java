@@ -37,6 +37,10 @@ public class LoginActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
+        if (ParseUser.getCurrentUser() != null) {
+            showMainActivity();
+        }
+
         setContentView(R.layout.activity_login);
 
         final EditText etEmail = (EditText) findViewById(R.id.login_email);
