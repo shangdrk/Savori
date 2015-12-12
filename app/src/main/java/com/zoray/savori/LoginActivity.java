@@ -42,6 +42,15 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etEmail = (EditText) findViewById(R.id.login_email);
         final EditText etPassword = (EditText) findViewById(R.id.login_password);
 
+        TextView tvSkip = (TextView) findViewById(R.id.tvSkip);
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMainActivity();
+            }
+        });
+
+
         TextView tvSignIn = (TextView) findViewById(R.id.tvSignIn);
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
