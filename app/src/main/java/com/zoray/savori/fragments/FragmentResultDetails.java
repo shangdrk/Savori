@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.zoray.savori.R;
 
@@ -18,6 +19,10 @@ public class FragmentResultDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(
                 R.layout.fragment_result_details, container, false);
+
+        TextView textView = (TextView) rootView.findViewById(R.id.tvRsDt);
+
+        textView.setText(getArguments().getString("resultID"));
 
         return rootView;
     }

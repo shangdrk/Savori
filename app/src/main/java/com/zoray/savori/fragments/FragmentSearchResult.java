@@ -1,13 +1,10 @@
 package com.zoray.savori.fragments;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +41,6 @@ public class FragmentSearchResult extends Fragment {
                 R.layout.fragment_result_general, container, false);
 
         Log.d("mylog", "enter fmSearchResult3");
-
 
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.parse.ParseObject;
+import com.zoray.savori.data.SearchResult;
+import com.zoray.savori.fragments.FragmentResultDetails;
 import com.zoray.savori.fragments.FragmentSearchResult;
 
 import java.util.ArrayList;
@@ -71,4 +73,18 @@ public class ResultActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }*/
+
+    public void showDetail(SearchResult result){
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentResultDetails fragment = new FragmentResultDetails();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("resultID", result.getName());
+        fragment.setArguments(bundle);
+        fragmentTransaction.replace(R.id.FragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
 }
