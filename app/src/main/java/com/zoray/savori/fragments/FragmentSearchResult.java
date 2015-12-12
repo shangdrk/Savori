@@ -49,16 +49,10 @@ public class FragmentSearchResult extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        Log.d("mylog", "exit fmSearchResult?");
-
         ArrayList<String> resultIDs = ((ResultActivity)getActivity()).getSearchResultIds();
         list = new ArrayList<SearchResult>();
 
-        Log.d("mylog", "enter fmSearchResult1?        "+ String.valueOf(resultIDs.size()));
-
         for (int i = 0; i <= resultIDs.size() - 1; ++i) {
-
-            Log.d("mylog", "enter fmSearchResult2?");
 
             ParseUser user = ParseUser.getCurrentUser();
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Dish");
@@ -66,12 +60,9 @@ public class FragmentSearchResult extends Fragment {
                 @Override
                 public void done(ParseObject object, ParseException e) {
                     if (e == null) {
-
                         String dishName = object.getString("dishName");
-
                         SearchResult searchResult = new SearchResult(dishName, false);
                         searchResult.setParseId(object.getObjectId());
-                        Log.d("mylog", "fragmentsearchresult"+object.getObjectId());
                         list.add(searchResult);
 
                     } else {
@@ -83,8 +74,6 @@ public class FragmentSearchResult extends Fragment {
             });
 
         }
-
-
 
         return rootView;
 

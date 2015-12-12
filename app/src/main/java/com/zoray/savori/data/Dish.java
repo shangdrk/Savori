@@ -9,11 +9,30 @@ public class Dish {
     private String price;
     private String parseID;
 
-    public Dish(String dishName, String price, String parseID){
+    public Dish() {
+
+    }
+
+    public String getDishName() {
+        return this.dishName;
+    }
+    public void setDishName(String dishName) {
         this.dishName = dishName;
-        this.parseID = parseID;
+    }
+
+    public String getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(String price) {
         this.price = price;
     }
+
+
+    public void setParseID(String parseID) {
+        this.parseID = parseID;
+    }
+
 
     public String getParseID(){
         return parseID;
