@@ -10,15 +10,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.parse.FindCallback;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.zoray.savori.data.SearchResult;
 import com.zoray.savori.fragments.FragmentResultDetails;
 import com.zoray.savori.fragments.FragmentSearchResult;
+import com.parse.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResultActivity extends AppCompatActivity {
+
+    private ArrayList<String> searchResultIDs = new ArrayList<>();
+    private String resultId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,29 +43,35 @@ public class ResultActivity extends AppCompatActivity {
         Log.d("mylog", "get support action bar success");*/
 
         Intent intent = getIntent();
-        String query = intent.getExtras().getString("query");
+        String keyword = intent.getExtras().getString("keyword");
 
-        // suppose query database is done
+        ParseUser user = ParseUser.getCurrentUser();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Dish");
+        query.whereContains("dishName", keyword);
 
-        // display general results in the fragment
-        ArrayList<String> searchResultIDs = new ArrayList<>();
-        searchResultIDs.add("1234");
-        searchResultIDs.add("5678");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    for (int i = 0; i <= objects.size() - 1; ++i) {
+                        searchResultIDs.add(objects.get(i).getObjectId());
+                    }
 
-        Log.d("mylog", "receive query successfully");
+                } else {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FragmentSearchResult fragment = new FragmentSearchResult();
+                }
 
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("resultIDs", searchResultIDs);
-        fragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.FragmentContainer, fragment);
-        fragmentTransaction.commit();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentSearchResult fragment = new FragmentSearchResult();
+                fragmentTransaction.add(R.id.FragmentContainer, fragment);
+                fragmentTransaction.commit();
 
-        Log.d("mylog", "fm manager and transaction?");
+            }
 
+        });
+
+        Log.d("mylog", "test 6=============");
     }
 
     /*@Override
@@ -74,21 +87,26 @@ public class ResultActivity extends AppCompatActivity {
 
     }*/
 
-    public void showDetail(String resultId){
+    public void showDetail(String resultId) {
+
+        this.resultId = resultId;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FragmentResultDetails fragment = new FragmentResultDetails();
 
-        Bundle bundle = new Bundle();
-        bundle.putString("resultID", resultId);
-
-
-
-
-        fragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.FragmentContainer, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    public ArrayList<String> getSearchResultIds(){
+
+        return searchResultIDs;
+    }
+
+    public String getResultId(){
+
+        return resultId;
     }
 }

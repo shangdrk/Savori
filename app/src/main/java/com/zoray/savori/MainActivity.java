@@ -31,21 +31,19 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            Log.d("mylog", "start search?");
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            showResults(query);
-        }else {
+            String keyword = intent.getStringExtra(SearchManager.QUERY);
+            showResults(keyword);
+        }else
+        {
+
+
         }
-        Log.d("mylog", "exit on create but why?");
     }
 
-    private void showResults(String query) {
-
+    private void showResults(String keyword) {
         Intent intent  = new Intent(getApplicationContext(),ResultActivity.class);
-        intent.putExtra("query", query);
+        intent.putExtra("keyword", keyword);
         startActivity(intent);
-
-
     }
 
 }

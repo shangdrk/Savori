@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zoray.savori.R;
+import com.zoray.savori.ResultActivity;
 
 public class FragmentResultDetails extends Fragment {
 
@@ -20,9 +21,12 @@ public class FragmentResultDetails extends Fragment {
         View rootView = inflater.inflate(
                 R.layout.fragment_result_details, container, false);
 
-        TextView textView = (TextView) rootView.findViewById(R.id.tvRsDt);
+        TextView textViewid = (TextView) rootView.findViewById(R.id.dishId);
 
-        textView.setText(getArguments().getString("resultID"));
+        textViewid.setText( (  (ResultActivity)getActivity() ).getResultId() );
+
+        TextView tvDishName = (TextView) rootView.findViewById(R.id.dishName);
+
 
         return rootView;
     }
