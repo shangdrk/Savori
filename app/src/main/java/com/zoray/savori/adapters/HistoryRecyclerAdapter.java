@@ -43,8 +43,7 @@ public class HistoryRecyclerAdapter
 
     @Override
     public int getItemCount() {
-        return 0;
-                //historyRows.size();
+        return historyRows.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
