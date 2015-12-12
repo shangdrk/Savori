@@ -40,8 +40,6 @@ public class FragmentResultDetails extends Fragment {
 
         layoutContent = (LinearLayout) rootView.findViewById(R.id.layoutContent_Detail);
 
-        final TextView textViewid = (TextView) rootView.findViewById(R.id.dishId);
-
         final TextView tvDishName = (TextView) rootView.findViewById(R.id.dishName);
 
         final Button btnOrder = (Button) rootView.findViewById(R.id.btnOrder);
@@ -72,14 +70,11 @@ public class FragmentResultDetails extends Fragment {
                     dish.setPrice(dishPrice);
                     dish.setParseID(parseId);
 
-
                 } else {
                     // something went wrong
                 }
 
-                textViewid.setText( dish.getParseID() );
                 tvDishName.setText( dish.getDishName() );
-
             }
         });
 
