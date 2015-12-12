@@ -43,31 +43,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showResults(String query) {
-        Log.d("mylog", query);
-        // Query your data set and show results
-        // ...
-
-        Bundle bundle = new Bundle();
-        bundle.putString("SEARCH_RESULT", "From Activity");
-
-        pagerAdapter = new MainFragmentPagerAdapter(
-                getSupportFragmentManager(), getApplicationContext(),bundle
-        );
-        viewPager = (ViewPager) findViewById(R.id.main_container);
-
-        viewPager.setAdapter(pagerAdapter);
-
-
-
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tabs);
-
-        tabLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                tabLayout.setupWithViewPager(viewPager);
-            }
-        });
-        Log.d("mylog", "finish show result?");
+        Intent intent  = new Intent(getApplicationContext(),ResultActivity.class);
+        intent.putExtra("query", query);
+        startActivity(intent);
     }
 
 }

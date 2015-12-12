@@ -38,15 +38,6 @@ public class FragmentDefault extends Fragment {
 
         //searchView.requestFocusFromTouch();
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(getContext());
-
-        recyclerView.setHasFixedSize(false);
-        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(
-                getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(adapter);
-
         return rootView;
     }
 
