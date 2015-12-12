@@ -74,14 +74,18 @@ public class ResultActivity extends AppCompatActivity {
 
     }*/
 
-    public void showDetail(SearchResult result){
+    public void showDetail(String resultId){
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FragmentResultDetails fragment = new FragmentResultDetails();
 
         Bundle bundle = new Bundle();
-        bundle.putString("resultID", result.getName());
+        bundle.putString("resultID", resultId);
+
+
+
+
         fragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.FragmentContainer, fragment);
         fragmentTransaction.addToBackStack(null);
