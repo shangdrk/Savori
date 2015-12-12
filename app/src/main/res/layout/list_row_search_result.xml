@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/ivDishImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ramen"/>
+
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvDishDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:background="@color/colorWarmYellow"
+        android:text="Click for more detials"
+        android:layout_below="@+id/ivDishImage"/>
+
+    <TextView
+        android:id="@+id/tvDishName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name of the Dish Goes Here"
+        android:background="@color/colorLightGrey"
+        android:alpha="0.8"
+        android:textColor="@color/colorWhite"
+        android:layout_above="@+id/tvDishDetails" />
+
+    <TextView
+        android:id="@+id/tvDishPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name" />
+        android:padding="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="2800 Ft"
+        android:background="@color/colorBackground"
+        android:alpha="0.8"
+        android:textColor="@color/colorWhite"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/ivDishImage" />
 
 
-</LinearLayout>
+</RelativeLayout>
