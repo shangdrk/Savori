@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.zoray.savori.R;
 import com.zoray.savori.data.HistoryRow;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryRecyclerAdapter
@@ -22,6 +23,7 @@ public class HistoryRecyclerAdapter
 
     public HistoryRecyclerAdapter(Context context) {
         this.context = context;
+        this.historyRows = new ArrayList<>();
     }
 
     @Override

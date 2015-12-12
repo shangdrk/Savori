@@ -33,10 +33,7 @@ public class MainActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             showResults(query);
-        }else
-        {
-
-
+        }else {
         }
     }
 
