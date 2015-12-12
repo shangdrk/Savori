@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            Log.d("mylog", "start search?");
             String query = intent.getStringExtra(SearchManager.QUERY);
             showResults(query);
         }else
@@ -38,12 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+        Log.d("mylog", "exit on create but why?");
     }
 
     private void showResults(String query) {
-        Log.d("mylog", query);
-        // Query your data set and show results
-        // ...
+
+        Intent intent  = new Intent(getApplicationContext(),ResultActivity.class);
+        intent.putExtra("query", query);
+        startActivity(intent);
 
 
     }
