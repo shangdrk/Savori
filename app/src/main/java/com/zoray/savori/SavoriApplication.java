@@ -3,6 +3,8 @@ package com.zoray.savori;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
+import com.zoray.savori.data.HistoryRow;
 
 public class SavoriApplication extends Application {
 
@@ -13,6 +15,7 @@ public class SavoriApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        ParseObject.registerSubclass(HistoryRow.class);
         Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
     }
 }

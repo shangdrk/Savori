@@ -1,6 +1,8 @@
 package com.zoray.savori.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +14,11 @@ import android.widget.TextView;
 import com.zoray.savori.R;
 import com.zoray.savori.data.HistoryRow;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class HistoryRecyclerAdapter
         extends RecyclerView.Adapter<HistoryRecyclerAdapter.ViewHolder> {
@@ -38,13 +43,46 @@ public class HistoryRecyclerAdapter
     public void onBindViewHolder(ViewHolder holder, int position) {
         HistoryRow row = historyRows.get(position);
 
-        // TODO: IMPLEMENTATION
+        holder.title.setText(row.getFoodTitle());
+        holder.desc.setText(convertToDesc(row));
+
+        Bitmap food = BitmapFactory.decodeByteArray(row.getFoodImage(), 0,
+                row.getFoodImage().length);
+        holder.ivFood.setImageBitmap(food);
+
+        Bitmap seller = BitmapFactory.decodeByteArray(row.getSellerImage(), 0,
+                row.getSellerImage().length);
+        holder.ivSeller.setImageBitmap(seller);
+
+        holder.rowFrame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: IMPLEMENT
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
-                //historyRows.size();
+        return historyRows.size();
+    }
+
+    public void update(List<HistoryRow> newList) {
+        historyRows = newList;
+        notifyDataSetChanged();
+    }
+
+    private String convertToDesc(HistoryRow row) {
+        String time = dateToTime(row.getOrderTime());
+        return String.format(context.getString(R.string.order_desc_placeholder),
+                row.getPrice(), time);
+    }
+
+    private String dateToTime(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d, HH:mm");
+        sdf.setTimeZone(TimeZone.getDefault());
+
+        return sdf.format(date);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

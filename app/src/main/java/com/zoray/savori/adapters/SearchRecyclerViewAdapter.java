@@ -16,10 +16,6 @@ import com.zoray.savori.data.SearchResult;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by amandayin.
- */
-
 public class SearchRecyclerViewAdapter
         extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder>{
 

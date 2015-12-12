@@ -1,45 +1,54 @@
 package com.zoray.savori.data;
 
-public class HistoryRow {
+import com.parse.ParseClassName;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 
-    private String foodTitle;
-    private String foodSeller;
-    private double price;
-    private long orderTime;
-    // Remember to also add images
+import java.util.Date;
 
-    public HistoryRow() {
-    }
+@ParseClassName("Transaction")
+public class HistoryRow extends ParseObject {
+
+    public HistoryRow() {}
 
     public String getFoodTitle() {
-        return foodTitle;
-    }
-
-    public void setFoodTitle(String foodTitle) {
-        this.foodTitle = foodTitle;
+        return getParseObject("food").getString("dishName");
     }
 
     public String getFoodSeller() {
-        return foodSeller;
-    }
-
-    public void setFoodSeller(String foodSeller) {
-        this.foodSeller = foodSeller;
+        return getParseObject("seller").getString("firstName") + " " +
+                getParseObject("seller").getString("lastName");
     }
 
     public double getPrice() {
-        return price;
+        return (double) getNumber("price");
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public Date getOrderTime() {
+        return getDate("orderTime");
     }
 
-    public long getOrderTime() {
-        return orderTime;
+    public boolean getIsFinished() {
+        return getBoolean("isFinished");
     }
 
-    public void setOrderTime(long orderTime) {
-        this.orderTime = orderTime;
+    public byte[] getFoodImage() {
+        byte[] foodImage = null;
+        try {
+            foodImage = getParseObject("food").getParseFile("picture").getData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return foodImage;
+    }
+
+    public byte[] getSellerImage() {
+        byte[] sellerImage = null;
+        try {
+            sellerImage = getParseObject("seller").getParseFile("picture").getData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return sellerImage;
     }
 }

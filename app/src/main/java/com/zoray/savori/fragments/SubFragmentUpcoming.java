@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zoray.savori.MainActivity;
 import com.zoray.savori.R;
 import com.zoray.savori.adapters.HistoryRecyclerAdapter;
 
@@ -30,6 +31,11 @@ public class SubFragmentUpcoming extends Fragment {
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
+
+        if (((MainActivity)getContext()).getHistoryRowList() != null &&
+                ((MainActivity)getContext()).getHistoryRowList().size() != 0) {
+            adapter.update(((MainActivity)getContext()).getHistoryRowList());
+        }
 
         return rootView;
     }
