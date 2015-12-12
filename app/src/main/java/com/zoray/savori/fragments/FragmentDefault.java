@@ -32,19 +32,11 @@ public class FragmentDefault extends Fragment {
 
         // Get the SearchView and set the searchable configuration
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-
         // Assumes current activity is the searchable activity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(getContext());
-
-        recyclerView.setHasFixedSize(false);
-        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(
-                getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(adapter);
+        //searchView.requestFocusFromTouch();
 
         return rootView;
     }

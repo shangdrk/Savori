@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zoray.savori.R;
+import com.zoray.savori.ResultActivity;
 import com.zoray.savori.data.SearchResult;
 
 import java.util.ArrayList;
@@ -31,16 +32,30 @@ public class SearchRecyclerViewAdapter
 
     }
 
+    public SearchRecyclerViewAdapter(Context context, List<SearchResult> results){
+        this.context = context;
+        this.searchResults = results;
+
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, final int position) {
         View row = LayoutInflater.from(context).inflate(
                 R.layout.list_row_search_result, parent, false
         );
+        row.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // display details
+                ResultActivity rsActivity = (ResultActivity) context;
+                rsActivity.showDetail(searchResults.get(position).getName());
+            }
+        });
         return new ViewHolder(row);
     }
 
