@@ -1,8 +1,9 @@
 package com.zoray.savori;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowSignUpFragment(FragmentSignUp.TAG);
+                ShowSignUpFragment();
             }
         });
 
@@ -85,9 +86,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void ShowSignUpFragment(String tag) {
-        FragmentSignUp acf = new FragmentSignUp();
-        // TODO implement this
+    private void ShowSignUpFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        Fragment signUp = new FragmentSignUp();
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(
+                android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right
+        );
+        transaction.replace(R.id.layout_login, signUp, FragmentSignUp.TAG);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 
     @Override

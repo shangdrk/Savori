@@ -59,7 +59,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/login_email"
+            android:id="@+id/signUp_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -74,7 +74,7 @@
             android:textColor="@color/colorBackground"/>
 
         <EditText
-            android:id="@+id/login_password"
+            android:id="@+id/signUp_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -88,6 +88,7 @@
             android:textColor="@color/colorBackground" />
 
         <TextView
+            android:id="@+id/signUp_submit"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
