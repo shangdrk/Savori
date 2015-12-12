@@ -53,7 +53,7 @@ public class SearchRecyclerViewAdapter
             public void onClick(View v) {
                 // display details
                 ResultActivity rsActivity = (ResultActivity) context;
-                rsActivity.showDetail(searchResults.get(position));
+                rsActivity.showDetail(searchResults.get(position).getName());
             }
         });
         return new ViewHolder(row);
