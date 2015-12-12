@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">Savori</string>
     <string name="facebook_app_id">477736732406131</string>
-    <string name="wrong_email_error">The email format is wrong</string>
-    <string name="invalid_password_error">The password is invalid</string>
+    <string name="wrong_email_error">Please enter a valid email</string>
+    <string name="invalid_password_error">Please enter a valid password</string>
 
     <string name="parse_app_id">RoOfoG1LopbmXFbYvBzeW4TtL0Ef01SaWuUANzRK</string>
     <string name="parse_client_key">T0CP2yJEqcTqp9XhbIzmWS1bXcFqfXqbHuet33DH</string>
+    <string name="et_email">Email Address</string>
+    <string name="et_password">Password</string>
+    <string name="tv_sign_in">Sign In</string>
+    <string name="tv_sign_up">Sign Up</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

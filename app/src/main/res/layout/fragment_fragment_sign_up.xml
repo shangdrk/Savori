@@ -1,0 +1,105 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGrey"
+    tools:context="com.zoray.savori.fragments.FragmentSignUp">
+
+    <ImageView
+        android:id="@+id/ivBack_arrow"
+        android:padding="10dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:src="@drawable/back_arrow"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:weightSum="100"
+            android:paddingTop="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/signUp_firstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:padding="5dp"
+                android:hint="First Name"
+                android:textColorHint="@color/colorLightGrey"
+                android:textSize="20sp"
+                android:background="@drawable/focus_border_style"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorBackground"/>
+
+            <EditText
+                android:id="@+id/signUp_lastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:padding="5dp"
+                android:hint="Last Name"
+                android:textSize="20sp"
+                android:textColorHint="@color/colorLightGrey"
+                android:background="@drawable/focus_border_style"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorBackground" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:hint="@string/et_email"
+            android:textSize="20sp"
+            android:textColorHint="@color/colorLightGrey"
+            android:background="@drawable/focus_border_style"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/colorBackground"/>
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:hint="@string/et_password"
+            android:textSize="20sp"
+            android:textColorHint="@color/colorLightGrey"
+            android:background="@drawable/focus_border_style"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/colorBackground" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="Submit"
+            android:textSize="20sp"
+            android:textColor="@color/colorLightGrey"
+            android:background="@color/colorWarmYellow"/>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
