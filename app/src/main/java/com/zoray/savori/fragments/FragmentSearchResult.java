@@ -49,6 +49,7 @@ public class FragmentSearchResult extends Fragment {
 
 
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+
         SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(getContext(),list);
 
         recyclerView.setHasFixedSize(false);

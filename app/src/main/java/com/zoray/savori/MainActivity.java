@@ -43,9 +43,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showResults(String query) {
+
         Intent intent  = new Intent(getApplicationContext(),ResultActivity.class);
         intent.putExtra("query", query);
         startActivity(intent);
+
+
     }
 
 }
