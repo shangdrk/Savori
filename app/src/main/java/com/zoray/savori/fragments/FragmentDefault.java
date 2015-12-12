@@ -37,18 +37,6 @@ public class FragmentDefault extends Fragment {
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
         //searchView.requestFocusFromTouch();
-<<<<<<< HEAD
-=======
-
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(getContext());
-
-        recyclerView.setHasFixedSize(false);
-        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(
-                getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(adapter);
->>>>>>> b33d8f59630e5ed35e81c003a6055ec8f6586775
 
         return rootView;
     }
