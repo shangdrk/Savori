@@ -7,7 +7,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorBackground"
     tools:context="com.zoray.savori.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="354dp"
+        android:src="@drawable/bg" />
 
     <TextView
         android:id="@+id/tvSkip"
@@ -16,63 +22,84 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="SKIP" />
+        android:text="SKIP"
+        android:textColor="@color/colorWhite"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/group_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="380dp"
         android:layout_below="@+id/tvSkip"
+        android:gravity="bottom"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/login_email"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:singleLine="true" />
+            android:layout_height="78dp"
+            android:paddingBottom="10dp">
 
-        <EditText
-            android:id="@+id/login_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true" />
+            <EditText
+                android:id="@+id/login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_email"
+                android:textColorHint="@color/colorLightGrey"
+                android:background="@drawable/focus_border_style"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/colorBackground"/>
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_password"
+                android:textColorHint="@color/colorLightGrey"
+                android:background="@drawable/focus_border_style"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/colorBackground"
+                android:layout_alignParentBottom="true" />
 
-    <Button
-        android:id="@+id/btnSignOn"
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/tv_sign_in"
+        android:textSize="16sp"
+        android:textColor="@color/colorWhite"
         android:layout_below="@+id/group_login"
-        android:layout_toLeftOf="@+id/tvSignUp"
-        android:layout_toStartOf="@+id/tvSignUp"
-        android:text="Sign On" />
+        android:layout_alignLeft="@+id/fb_login_button"
+        android:layout_alignStart="@+id/fb_login_button" />
 
     <TextView
         android:id="@+id/tvSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnSignOn"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/group_login"
         android:gravity="center"
-        android:text="Sign Up" />
+        android:text="@string/tv_sign_up"
+        android:textColor="@color/colorYellow"
+        android:layout_alignTop="@+id/tvSignIn"
+        android:layout_alignRight="@+id/fb_login_button"
+        android:layout_alignEnd="@+id/fb_login_button"
+        android:layout_toRightOf="@+id/tvSignIn"
+        android:layout_toEndOf="@+id/tvSignIn"
+        android:layout_alignBottom="@+id/tvSignIn" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnSignOn"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="30dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

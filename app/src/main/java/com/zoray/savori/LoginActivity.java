@@ -1,12 +1,15 @@
 package com.zoray.savori;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -19,6 +22,7 @@ import com.facebook.login.widget.LoginButton;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.zoray.savori.fragments.FragmentSignUp;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,8 +40,9 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText etEmail = (EditText) findViewById(R.id.login_email);
         final EditText etPassword = (EditText) findViewById(R.id.login_password);
-        Button btnSignOn = (Button) findViewById(R.id.btnSignOn);
-        btnSignOn.setOnClickListener(new View.OnClickListener() {
+
+        TextView tvSignIn = (TextView) findViewById(R.id.tvSignIn);
+        tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isCorrectEmailFormat(etEmail.getText().toString())) {
@@ -48,6 +53,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 attemptLogin(etEmail.getText().toString(), etPassword.getText().toString());
+            }
+        });
+
+        TextView tvSignUp = (TextView) findViewById(R.id.tvSignUp);
+        tvSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowSignUpFragment(FragmentSignUp.TAG);
             }
         });
 
@@ -70,6 +83,11 @@ public class LoginActivity extends AppCompatActivity {
                 // TODO: implementation
             }
         });
+    }
+
+    private void ShowSignUpFragment(String tag) {
+        FragmentSignUp acf = new FragmentSignUp();
+        // TODO implement this
     }
 
     @Override
