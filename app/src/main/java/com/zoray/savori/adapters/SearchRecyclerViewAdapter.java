@@ -68,26 +68,16 @@ public class SearchRecyclerViewAdapter
     public void onBindViewHolder(ViewHolder holder, final int position) {
         SearchResult item = searchResults.get(position);
         holder.tvName.setText(item.getName());
-        holder.cbBought.setChecked(item.isBought());
-        holder.cbBought.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,
-                        "SearchResult " + position,
-                        Toast.LENGTH_LONG).show();
-            }
-        });
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView tvName;
-        private final CheckBox cbBought;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            cbBought = (CheckBox) itemView.findViewById(R.id.cbBought);
+            tvName = (TextView) itemView.findViewById(R.id.tvDishName);
         }
     }
 }

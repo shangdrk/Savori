@@ -20,7 +20,7 @@ public class FragmentResultDetails extends Fragment {
         View rootView = inflater.inflate(
                 R.layout.fragment_result_details, container, false);
 
-        TextView textView = (TextView) rootView.findViewById(R.id.tvRsDt);
+        TextView textView = (TextView) rootView.findViewById(R.id.dishName);
 
         textView.setText(getArguments().getString("resultID"));
 
