@@ -72,7 +72,7 @@ public class FragmentResultDetails extends Fragment {
                 Dish dish = new Dish();
 
                 if (e == null) {
-                    String dishName = object.getString("dishName");
+                    String dishName = ((ResultActivity) getActivity()).toTitleCase(object.getString("dishName"));
                     String dishPrice = object.getString("price");
                     String parseId = object.getObjectId();
                     ParseFile dishImage = object.getParseFile("picture");

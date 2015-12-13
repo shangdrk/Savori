@@ -68,7 +68,7 @@ public class FragmentSearchResult extends Fragment {
                     @Override
                     public void done(ParseObject object, ParseException e) {
                         if (e == null) {
-                            String dishName = object.getString("dishName");
+                            String dishName = ((ResultActivity) getActivity()).toTitleCase(object.getString("dishName"));
                             String price = object.getString("price");
                             ParseFile dishImage = object.getParseFile("picture");
                             byte[] imageBytes = new byte[0];
