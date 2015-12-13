@@ -58,6 +58,7 @@ public class FragmentAccount extends Fragment {
     public void performLogOut() {
         Intent intentLogin = new Intent();
         intentLogin.setClass(getContext(), LoginActivity.class);
+        intentLogin.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intentLogin);
     }
 }

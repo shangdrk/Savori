@@ -23,6 +23,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.zoray.savori.MainActivity;
 import com.zoray.savori.R;
 import com.zoray.savori.ResultActivity;
@@ -138,13 +139,21 @@ public class FragmentResultDetails extends Fragment {
                     newOrder.put("seller", chef);
                 }*/
                                     newOrder.put("seller", object.get("chef"));
-                                    newOrder.put("food", resultId);
+                                    newOrder.put("food", object);
                                     newOrder.put("orderTime", new Date());
                                     newOrder.put("isFinished", false);
-                                    newOrder.saveInBackground();
+                                    newOrder.saveInBackground(new SaveCallback() {
+                                        public void done(ParseException e) {
+                                            if (e == null) {
+                                                showSnackBarMessage("Your order has been placed!");
+                                            } else {
+                                                Log.d("mylog", e.getMessage());
+                                                showSnackBarMessage("Sorry, this item is not available for now.");
 
+                                            }
+                                        }
+                                    });
 
-                                    showSnackBarMessage("Your order has been placed!");
                                 }
                             }
                         }

@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private void showResults(String keyword) {
         Intent intent  = new Intent(getApplicationContext(),ResultActivity.class);
         intent.putExtra("keyword", keyword);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 
