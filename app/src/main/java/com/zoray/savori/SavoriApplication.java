@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
-import com.zoray.savori.data.HistoryRow;
+import com.zoray.savori.data.Transaction;
 
 public class SavoriApplication extends Application {
 
@@ -15,7 +15,7 @@ public class SavoriApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ParseObject.registerSubclass(HistoryRow.class);
+        ParseObject.registerSubclass(Transaction.class);
         Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
     }
 }

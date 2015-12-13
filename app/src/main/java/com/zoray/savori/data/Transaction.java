@@ -7,9 +7,9 @@ import com.parse.ParseObject;
 import java.util.Date;
 
 @ParseClassName("Transaction")
-public class HistoryRow extends ParseObject {
+public class Transaction extends ParseObject {
 
-    public HistoryRow() {}
+    public Transaction() {}
 
     public String getFoodTitle() {
         return getParseObject("food").getString("dishName");

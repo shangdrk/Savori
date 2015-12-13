@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zoray.savori.R;
-import com.zoray.savori.data.HistoryRow;
+import com.zoray.savori.data.Transaction;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,11 +24,11 @@ public class HistoryRecyclerAdapter
         extends RecyclerView.Adapter<HistoryRecyclerAdapter.ViewHolder> {
 
     private Context context;
-    private List<HistoryRow> historyRows;
+    private List<Transaction> transactions;
 
     public HistoryRecyclerAdapter(Context context) {
         this.context = context;
-        this.historyRows = new ArrayList<>();
+        this.transactions = new ArrayList<>();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class HistoryRecyclerAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        HistoryRow row = historyRows.get(position);
+        Transaction row = transactions.get(position);
 
         holder.title.setText(row.getFoodTitle());
         holder.desc.setText(convertToDesc(row));
@@ -64,15 +64,15 @@ public class HistoryRecyclerAdapter
 
     @Override
     public int getItemCount() {
-        return historyRows.size();
+        return transactions.size();
     }
 
-    public void update(List<HistoryRow> newList) {
-        historyRows = newList;
+    public void update(List<Transaction> newList) {
+        transactions = newList;
         notifyDataSetChanged();
     }
 
-    private String convertToDesc(HistoryRow row) {
+    private String convertToDesc(Transaction row) {
         String time = dateToTime(row.getOrderTime());
         return String.format(context.getString(R.string.order_desc_placeholder),
                 row.getPrice(), time);

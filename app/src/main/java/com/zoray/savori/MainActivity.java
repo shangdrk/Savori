@@ -9,13 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.zoray.savori.adapters.MainFragmentPagerAdapter;
-import com.zoray.savori.data.HistoryRow;
+import com.zoray.savori.data.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private MainFragmentPagerAdapter pagerAdapter;
     private ViewPager viewPager;
 
-    private List<HistoryRow> historyRowList;
-    private List<HistoryRow> upcomingRowList;
+    private List<Transaction> transactionList;
+    private List<Transaction> upcomingRowList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +73,18 @@ public class MainActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
+                if (objects == null || objects.size() == 0) return;
+
                 if (e == null) {
                     if (objects.get(0).getList("transactionArray").size() != 0) {
-                        historyRowList = new ArrayList<>();
+                        transactionList = new ArrayList<>();
                         upcomingRowList = new ArrayList<>();
                     }
                     for (Object row : objects.get(0).getList("transactionArray")) {
-                        if (((HistoryRow) row).getIsFinished()) {
-                            historyRowList.add((HistoryRow)row);
+                        if (((Transaction) row).getIsFinished()) {
+                            transactionList.add((Transaction)row);
                         } else {
-                            upcomingRowList.add((HistoryRow) row);
+                            upcomingRowList.add((Transaction) row);
                         }
                     }
                 } else {
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO: IMPLEMENTATION
     }
 
-    public List<HistoryRow> getHistoryRowList() {
-        return historyRowList;
+    public List<Transaction> getTransactionList() {
+        return transactionList;
     }
 }

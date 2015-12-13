@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.zoray.savori.LoginActivity;
@@ -88,7 +89,7 @@ public class FragmentSignUp extends Fragment {
     }
 
     public void signUpUser() {
-        ParseUser user = new ParseUser();
+        final ParseUser user = new ParseUser();
         user.setEmail(email.getText().toString());
         user.setUsername(email.getText().toString());
         user.setPassword(password.getText().toString());
@@ -99,6 +100,10 @@ public class FragmentSignUp extends Fragment {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
+                    ParseObject history = new ParseObject("History");
+                    history.put("userEmail", user.getEmail());
+                    history.saveInBackground();
+
                     getActivity().onBackPressed();
                 } else {
                     e.printStackTrace();
