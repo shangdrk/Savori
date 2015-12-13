@@ -52,20 +52,21 @@ public class ResultActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentSearchResult fragment = new FragmentSearchResult();
+
                 if (e == null) {
                     for (int i = 0; i <= objects.size() - 1; ++i) {
                         searchResultIDs.add(objects.get(i).getObjectId());
                     }
                 } else {
-
+                    fragment.setErrorTag(true);
                 }
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                FragmentSearchResult fragment = new FragmentSearchResult();
                 fragmentTransaction.add(R.id.FragmentContainer, fragment);
                 fragmentTransaction.commit();
-
             }
 
         });

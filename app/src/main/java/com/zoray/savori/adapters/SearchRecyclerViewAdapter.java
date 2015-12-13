@@ -1,11 +1,14 @@
 package com.zoray.savori.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,8 +60,13 @@ public class SearchRecyclerViewAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         SearchResult item = searchResults.get(position);
-        holder.tvName.setText(item.getName());
-
+        holder.tvDishName.setText(item.getName());
+        holder.tvDishPrice.setText(item.getPrice());
+        if(item.getDishImage()!= null) {
+            Bitmap dishImageBmp = BitmapFactory.decodeByteArray(item.getDishImage(), 0,
+                    item.getDishImage().length);
+            holder.ivDishImage.setImageBitmap(dishImageBmp);
+        }
     }
 
     public void updateResultList(List<SearchResult> resultList){
@@ -68,12 +76,17 @@ public class SearchRecyclerViewAdapter
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView tvName;
+        private final TextView tvDishName;
+        private final TextView tvDishPrice;
+        private final ImageView ivDishImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvDishName);
+            tvDishName = (TextView) itemView.findViewById(R.id.tvDishName);
+            tvDishPrice = (TextView) itemView.findViewById(R.id.tvDishPrice);
+            ivDishImage = (ImageView) itemView.findViewById(R.id.ivDishImage);
             }
+
     }
 
 

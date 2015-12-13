@@ -39,7 +39,6 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="2800 Ft"
         android:background="@color/colorBackground"
         android:alpha="0.8"
         android:textColor="@color/colorWhite"
