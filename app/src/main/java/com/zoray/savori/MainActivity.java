@@ -96,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
         // TODO: IMPLEMENTATION
     }
 
+    public void changeTab(int positon) {
+        viewPager.setCurrentItem(positon, true);
+    }
+
     public List<Transaction> getTransactionList() {
         return transactionList;
     }
