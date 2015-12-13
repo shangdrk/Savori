@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/ivDishImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="260dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ramen"/>
 
@@ -18,7 +18,7 @@
         android:padding="10dp"
         android:gravity="center"
         android:background="@color/colorWarmYellow"
-        android:text="Click for more detials"
+        android:text="@string/txt_search_result_detail"
         android:layout_below="@+id/ivDishImage"/>
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name of the Dish Goes Here"
+        android:text="@string/empty_string"
         android:background="@color/colorLightGrey"
         android:alpha="0.8"
         android:textColor="@color/colorWhite"

@@ -9,5 +9,6 @@
     <color name="colorOrange">#E3952A</color>
     <color name="colorYellow">#EDE538</color>
     <color name="colorWarmYellow">#F4D56B</color>
+    <color name="colorHistGrey">#BBEEEEEE</color>
 
 </resources>
