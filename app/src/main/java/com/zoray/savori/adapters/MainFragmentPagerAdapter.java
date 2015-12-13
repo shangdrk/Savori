@@ -55,9 +55,9 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
     }
 
     private int[] imageResId = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher
+            R.mipmap.ic_home,
+            R.mipmap.ic_history,
+            R.mipmap.ic_account,
     };
 
     @Override

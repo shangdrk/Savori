@@ -1,12 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvRsDt"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ramen"/>
+
+            <TextView
+                android:id="@+id/dishId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="dish id" />
+
+            <TextView
+                android:id="@+id/dishName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text = "Peter's Specialty Ramen"
+                android:textSize="40sp"
+                android:layout_below="@+id/ivImage"/>
+
+            <ImageView
+                android:id="@+id/DishChef"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:src="@drawable/seller"
+                android:layout_below="@+id/dishName"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/ChefName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Peter Ekler"
+                android:textSize="20sp"
+                android:layout_below="@+id/DishChef"/>
+
+            <TextView
+                android:id="@+id/dishPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:gravity="center"
+                android:text="2800 Ft"
+                android:textSize="32sp"
+                android:textColor="@color/colorOrange"
+                android:layout_below="@+id/ChefName"/>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvOrder"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Place Order"
+        android:textSize="20sp"
+        android:textColor="@color/colorBackground"
+        android:background="@color/colorWarmYellow"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

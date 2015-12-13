@@ -3,7 +3,12 @@ package com.zoray.savori.data;
 public class SearchResult {
 
     private String name;
+    private String parseId;
     private boolean bought;
+
+    public void setParseId(String id) {
+        this.parseId = id;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -16,6 +21,11 @@ public class SearchResult {
     public String getName() {
 
         return name;
+    }
+
+    public String getParseId() {
+
+        return parseId;
     }
 
     public boolean isBought() {

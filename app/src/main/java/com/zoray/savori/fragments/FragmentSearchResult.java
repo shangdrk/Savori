@@ -10,9 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.GetCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.zoray.savori.R;
+import com.zoray.savori.ResultActivity;
 import com.zoray.savori.adapters.SearchRecyclerViewAdapter;
+import com.zoray.savori.data.Dish;
 import com.zoray.savori.data.SearchResult;
+
+import com.parse.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,29 +30,18 @@ import java.util.List;
  */
 public class FragmentSearchResult extends Fragment {
 
+    private List<SearchResult> list;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        Log.d("mylog", "enter fmSearchResult?");
-
-        ArrayList<String> resultIDs = getArguments().getStringArrayList("resultIDs");
-        SearchResult searchResult = new SearchResult(resultIDs.get(0),false);
-        SearchResult searchResult2 = new SearchResult(resultIDs.get(1),false);
-        List<SearchResult> list = new ArrayList<SearchResult>();
-        list.add(searchResult);
-        list.add(searchResult2);
-
-
-        View rootView = inflater.inflate(
+        final View rootView = inflater.inflate(
                 R.layout.fragment_result_general, container, false);
+        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
-        Log.d("mylog", "enter fmSearchResult3");
-
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-
-        SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(getContext(),list);
+        SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(getContext());
 
         recyclerView.setHasFixedSize(false);
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(
@@ -52,12 +49,35 @@ public class FragmentSearchResult extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        Log.d("mylog", "exit fmSearchResult?");
+        ArrayList<String> resultIDs = ((ResultActivity)getActivity()).getSearchResultIds();
+        list = new ArrayList<SearchResult>();
+
+        for (int i = 0; i <= resultIDs.size() - 1; ++i) {
+
+            ParseUser user = ParseUser.getCurrentUser();
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("Dish");
+            query.getInBackground(resultIDs.get(i), new GetCallback<ParseObject>() {
+                @Override
+                public void done(ParseObject object, ParseException e) {
+                    if (e == null) {
+                        String dishName = object.getString("dishName");
+                        SearchResult searchResult = new SearchResult(dishName, false);
+                        searchResult.setParseId(object.getObjectId());
+                        list.add(searchResult);
+
+                    } else {
+                        // something went wrong
+                    }
+
+                    ((SearchRecyclerViewAdapter)recyclerView.getAdapter()).updateResultList(list);
+                }
+            });
+
+        }
 
         return rootView;
 
     }
-
 
 
 }

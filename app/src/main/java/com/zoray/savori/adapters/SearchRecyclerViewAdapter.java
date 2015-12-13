@@ -17,20 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchRecyclerViewAdapter
-        extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder>{
+        extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHolder> {
 
     private Context context;
     private List<SearchResult> searchResults;
 
-    public SearchRecyclerViewAdapter(Context context){
+    public SearchRecyclerViewAdapter(Context context) {
         this.context = context;
         searchResults = new ArrayList<>();
-
-    }
-
-    public SearchRecyclerViewAdapter(Context context, List<SearchResult> results){
-        this.context = context;
-        this.searchResults = results;
 
     }
 
@@ -44,12 +38,12 @@ public class SearchRecyclerViewAdapter
         View row = LayoutInflater.from(context).inflate(
                 R.layout.list_row_search_result, parent, false
         );
-        row.setOnClickListener(new View.OnClickListener(){
+        row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // display details
                 ResultActivity rsActivity = (ResultActivity) context;
-                rsActivity.showDetail(searchResults.get(position).getName());
+                rsActivity.showDetail(searchResults.get(position).getParseId());
             }
         });
         return new ViewHolder(row);
@@ -64,26 +58,23 @@ public class SearchRecyclerViewAdapter
     public void onBindViewHolder(ViewHolder holder, final int position) {
         SearchResult item = searchResults.get(position);
         holder.tvName.setText(item.getName());
-        holder.cbBought.setChecked(item.isBought());
-        holder.cbBought.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,
-                        "SearchResult " + position,
-                        Toast.LENGTH_LONG).show();
-            }
-        });
+
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public void updateResultList(List<SearchResult> resultList){
+        searchResults = resultList;
+        notifyDataSetChanged();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tvName;
-        private final CheckBox cbBought;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
-            cbBought = (CheckBox) itemView.findViewById(R.id.cbBought);
-        }
+            }
     }
+
+
 }
