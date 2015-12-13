@@ -8,10 +8,8 @@
     <ImageView
         android:id="@+id/history_row_food"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxHeight="300dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/ramen" />
 
     <TextView
@@ -20,9 +18,9 @@
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
         android:layout_above="@+id/history_row_desc"
-        android:text="Super Delicious Ramen"
+        android:text="@string/txt_hist_row_title"
         android:textSize="25sp"
-        android:background="#BBEEEEEE"/>
+        android:background="@color/colorHistGrey"/>
 
     <TextView
         android:id="@+id/history_row_desc"
@@ -30,8 +28,8 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:layout_alignBottom="@+id/history_row_food"
-        android:text="Order total: $15.75 • Dec 11, 12:00PM"
-        android:background="#BBEEEEEE"/>
+        android:text="@string/txt_hist_order_desc"
+        android:background="@color/colorHistGrey"/>
 
     <ImageView
         android:id="@+id/history_row_seller"
