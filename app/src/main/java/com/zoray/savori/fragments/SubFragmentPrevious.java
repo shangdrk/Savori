@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zoray.savori.MainActivity;
 import com.zoray.savori.R;
 import com.zoray.savori.adapters.HistoryRecyclerAdapter;
 
@@ -31,6 +32,15 @@ public class SubFragmentPrevious extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
+        if (((MainActivity)getContext()).getTransactionList() != null &&
+                ((MainActivity)getContext()).getTransactionList().size() != 0) {
+            adapter.update(((MainActivity)getContext()).getTransactionList());
+        }
+
         return rootView;
+    }
+
+    public HistoryRecyclerAdapter getAdapter() {
+        return adapter;
     }
 }
