@@ -16,6 +16,10 @@ import com.parse.SignUpCallback;
 import com.zoray.savori.LoginActivity;
 import com.zoray.savori.R;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 public class FragmentSignUp extends Fragment {
 
     public final static String TAG = "FRAGMENT_SIGN_UP";
@@ -102,6 +106,7 @@ public class FragmentSignUp extends Fragment {
                 if (e == null) {
                     ParseObject history = new ParseObject("History");
                     history.put("userEmail", user.getEmail());
+                    history.put("transactionArray", Collections.emptyList());
                     history.saveInBackground();
 
                     getActivity().onBackPressed();

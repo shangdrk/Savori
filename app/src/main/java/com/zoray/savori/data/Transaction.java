@@ -12,16 +12,30 @@ public class Transaction extends ParseObject {
     public Transaction() {}
 
     public String getFoodTitle() {
-        return getParseObject("food").getString("dishName");
+        String title = null;
+        try {
+            title = getParseObject("food").fetchIfNeeded().getString("dishName");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return title;
     }
 
     public String getFoodSeller() {
-        return getParseObject("seller").getString("firstName") + " " +
-                getParseObject("seller").getString("lastName");
+        String firstName = null;
+        String lastName = null;
+        try {
+            firstName = getParseObject("seller").fetchIfNeeded().getString("firstName");
+            lastName = getParseObject("seller").fetchIfNeeded().getString("lastName");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return firstName + " " + lastName;
     }
 
-    public double getPrice() {
-        return (double) getNumber("price");
+    public int getPrice() {
+        return (int) getNumber("price");
     }
 
     public Date getOrderTime() {
@@ -35,7 +49,8 @@ public class Transaction extends ParseObject {
     public byte[] getFoodImage() {
         byte[] foodImage = null;
         try {
-            foodImage = getParseObject("food").getParseFile("picture").getData();
+            foodImage = getParseObject("food").fetchIfNeeded()
+                    .getParseFile("picture").getData();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -45,7 +60,8 @@ public class Transaction extends ParseObject {
     public byte[] getSellerImage() {
         byte[] sellerImage = null;
         try {
-            sellerImage = getParseObject("seller").getParseFile("picture").getData();
+            sellerImage = getParseObject("seller").fetchIfNeeded()
+                    .getParseFile("picture").getData();
         } catch (ParseException e) {
             e.printStackTrace();
         }

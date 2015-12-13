@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zoray.savori.R;
+import com.zoray.savori.adapters.HistoryRecyclerAdapter;
 
 public class FragmentHistory extends Fragment {
 
@@ -33,5 +34,11 @@ public class FragmentHistory extends Fragment {
 
     public static FragmentHistory getInstance() {
         return new FragmentHistory();
+    }
+
+    public HistoryRecyclerAdapter getUpcomingAdapter() {
+        Fragment childFragment = getChildFragmentManager()
+                .findFragmentByTag(SubFragmentUpcoming.TAG);
+        return ((SubFragmentUpcoming) childFragment).getAdapter();
     }
 }

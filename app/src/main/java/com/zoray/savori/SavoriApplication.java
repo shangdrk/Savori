@@ -16,6 +16,7 @@ public class SavoriApplication extends Application {
         super.onCreate();
 
         ParseObject.registerSubclass(Transaction.class);
+        Parse.enableLocalDatastore(this);
         Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
     }
 }

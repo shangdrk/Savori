@@ -32,11 +32,15 @@ public class SubFragmentUpcoming extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        if (((MainActivity)getContext()).getTransactionList() != null &&
-                ((MainActivity)getContext()).getTransactionList().size() != 0) {
-            adapter.update(((MainActivity)getContext()).getTransactionList());
+        if (((MainActivity)getContext()).getUpcomingRowList() != null &&
+                ((MainActivity)getContext()).getUpcomingRowList().size() != 0) {
+            adapter.update(((MainActivity)getContext()).getUpcomingRowList());
         }
 
         return rootView;
+    }
+
+    public HistoryRecyclerAdapter getAdapter() {
+        return adapter;
     }
 }

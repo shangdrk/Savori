@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -67,30 +66,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inflateHistoryRecyclerView() {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("History");
 
-        query.whereEqualTo("userEmail", ParseUser.getCurrentUser().getEmail());
-        query.findInBackground(new FindCallback<ParseObject>() {
+        ParseQuery<Transaction> query = ParseQuery.getQuery(Transaction.class);
+        query.whereEqualTo("buyer", ParseUser.getCurrentUser());
+        query.findInBackground(new FindCallback<Transaction>() {
             @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (objects == null || objects.size() == 0) return;
-
+            public void done(List<Transaction> objects, ParseException e) {
                 if (e == null) {
-                    if (objects.get(0).getList("transactionArray") != null &&
-                            objects.get(0).getList("transactionArray").size() != 0) {
-                        transactionList = new ArrayList<>();
-                        upcomingRowList = new ArrayList<>();
+                    if (objects.size() == 0) return;
 
-                        for (Object row : objects.get(0).getList("transactionArray")) {
-                            if (((Transaction) row).getIsFinished()) {
-                                transactionList.add((Transaction)row);
-                            } else {
-                                upcomingRowList.add((Transaction) row);
-                            }
+                    transactionList = new ArrayList<>();
+                    upcomingRowList = new ArrayList<>();
+                    for (Transaction trans : objects) {
+                        if (trans.getIsFinished()) {
+                            transactionList.add(trans);
+                        } else {
+                            upcomingRowList.add(trans);
                         }
                     }
-                } else {
-                    // TODO: HANDLE EXCEPTION
                 }
             }
         });
@@ -102,5 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
     public List<Transaction> getTransactionList() {
         return transactionList;
+    }
+
+    public List<Transaction> getUpcomingRowList() {
+        return upcomingRowList;
     }
 }
