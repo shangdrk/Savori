@@ -72,7 +72,7 @@ public class SearchRecyclerViewAdapter
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
+            tvName = (TextView) itemView.findViewById(R.id.tvDishName);
             }
     }
 

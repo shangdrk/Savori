@@ -76,15 +76,17 @@ public class MainActivity extends AppCompatActivity {
                 if (objects == null || objects.size() == 0) return;
 
                 if (e == null) {
-                    if (objects.get(0).getList("transactionArray").size() != 0) {
+                    if (objects.get(0).getList("transactionArray") != null &&
+                            objects.get(0).getList("transactionArray").size() != 0) {
                         transactionList = new ArrayList<>();
                         upcomingRowList = new ArrayList<>();
-                    }
-                    for (Object row : objects.get(0).getList("transactionArray")) {
-                        if (((Transaction) row).getIsFinished()) {
-                            transactionList.add((Transaction)row);
-                        } else {
-                            upcomingRowList.add((Transaction) row);
+
+                        for (Object row : objects.get(0).getList("transactionArray")) {
+                            if (((Transaction) row).getIsFinished()) {
+                                transactionList.add((Transaction)row);
+                            } else {
+                                upcomingRowList.add((Transaction) row);
+                            }
                         }
                     }
                 } else {

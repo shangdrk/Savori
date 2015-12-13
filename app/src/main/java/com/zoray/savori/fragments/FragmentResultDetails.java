@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
@@ -28,7 +29,7 @@ public class FragmentResultDetails extends Fragment {
 
     public final static String TAG = "FRAGMENT_RESULT_DETAILS";
     private String resultId;
-    private LinearLayout layoutContent;
+    private RelativeLayout layoutContent;
 
     @Nullable
     @Override
@@ -38,12 +39,12 @@ public class FragmentResultDetails extends Fragment {
 
         resultId = ((ResultActivity)getActivity()).getResultId();
 
-        layoutContent = (LinearLayout) rootView.findViewById(R.id.layoutContent_Detail);
+        layoutContent = (RelativeLayout) rootView.findViewById(R.id.layoutContent_Detail);
 
         final TextView tvDishName = (TextView) rootView.findViewById(R.id.dishName);
 
-        final Button btnOrder = (Button) rootView.findViewById(R.id.btnOrder);
-        btnOrder.setOnClickListener(new View.OnClickListener(){
+        final TextView tvOrder = (TextView) rootView.findViewById(R.id.tvOrder);
+        tvOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: actually place the order!
