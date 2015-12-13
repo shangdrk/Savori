@@ -1,20 +1,25 @@
 package com.zoray.savori.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -41,7 +46,11 @@ public class FragmentResultDetails extends Fragment {
 
         layoutContent = (RelativeLayout) rootView.findViewById(R.id.layoutContent_Detail);
 
-        final TextView tvDishName = (TextView) rootView.findViewById(R.id.dishName);
+        final TextView tvDishName = (TextView) rootView.findViewById(R.id.dishNameDetail);
+        final TextView tvDishPrice = (TextView) rootView.findViewById(R.id.dishPriceDetail);
+        final ImageView ivDish = (ImageView) rootView.findViewById(R.id.ivDishImageDetail) ;
+        final TextView tvChefName = (TextView) rootView.findViewById(R.id.tvChefNameDetail);
+        final ImageView ivChef = (ImageView) rootView.findViewById((R.id.ivChefDetail));
 
         final TextView tvOrder = (TextView) rootView.findViewById(R.id.tvOrder);
         tvOrder.setOnClickListener(new View.OnClickListener() {
@@ -66,16 +75,51 @@ public class FragmentResultDetails extends Fragment {
                     String dishName = object.getString("dishName");
                     String dishPrice = object.getString("price");
                     String parseId = object.getObjectId();
+                    ParseFile dishImage = object.getParseFile("picture");
+                    ParseUser chef = (ParseUser) object.get("chef");
+                    byte[] imageBytes = new byte[0];
+                    try {
+                        imageBytes = dishImage.getData();
+                    }catch (ParseException ex){
+                        ex.printStackTrace();
+                    }
 
                     dish.setDishName(dishName);
                     dish.setPrice(dishPrice);
                     dish.setParseID(parseId);
-
+                    dish.setChef(chef);
+                    if (imageBytes!=null){
+                        dish.setDishImage(imageBytes);
+                    }
                 } else {
                     // something went wrong
                 }
 
-                tvDishName.setText( dish.getDishName() );
+                tvDishName.setText(dish.getDishName());
+                ParseUser chef = null;
+                try{
+                    chef = dish.getChef().fetchIfNeeded();
+                }catch (ParseException ex){
+                    ex.printStackTrace();
+                }
+                if (chef!= null){
+                    tvChefName.setText(chef.getString("firstName") + " " + chef.getString("lastName"));
+                }
+                tvDishPrice.setText(dish.getPrice());
+                Bitmap dishImageBmp = BitmapFactory.decodeByteArray(dish.getDishImage(), 0,
+                        dish.getDishImage().length);
+                ivDish.setImageBitmap(dishImageBmp);
+
+                byte[] chefImageBytes = new byte[0];
+                try {
+                    chefImageBytes = chef.getParseFile("picture").getData();
+                }catch (ParseException ex){
+                    ex.printStackTrace();
+                }
+                if(chefImageBytes!= null){
+                    Bitmap chefImageBmp = BitmapFactory.decodeByteArray(chefImageBytes, 0, chefImageBytes.length );
+                    ivChef.setImageBitmap(chefImageBmp);
+                }
             }
         });
 

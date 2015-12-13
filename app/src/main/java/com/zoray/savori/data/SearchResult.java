@@ -1,10 +1,29 @@
 package com.zoray.savori.data;
 
+import android.graphics.Bitmap;
+
 public class SearchResult {
 
     private String name;
     private String parseId;
-    private boolean bought;
+    private String price;
+    private byte[] dishImage = null;
+
+    public void setDishImage(byte[] dishImage) {
+        this.dishImage = dishImage;
+    }
+
+    public byte[] getDishImage() {
+        return dishImage;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public void setParseId(String id) {
         this.parseId = id;
@@ -14,27 +33,15 @@ public class SearchResult {
         this.name = name;
     }
 
-    public void setBought(boolean bought) {
-        this.bought = bought;
-    }
-
     public String getName() {
-
         return name;
     }
 
     public String getParseId() {
-
         return parseId;
     }
 
-    public boolean isBought() {
-        return bought;
-    }
+    public SearchResult() {
 
-    public SearchResult(String name, boolean bought) {
-
-        this.name = name;
-        this.bought = bought;
     }
 }

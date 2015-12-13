@@ -14,48 +14,48 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/ivImage"
+                android:id="@+id/ivDishImageDetail"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ramen"/>
 
             <TextView
-                android:id="@+id/dishId"
+                android:id="@+id/dishIdDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="dish id" />
 
             <TextView
-                android:id="@+id/dishName"
+                android:id="@+id/dishNameDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text = "Peter's Specialty Ramen"
                 android:textSize="40sp"
-                android:layout_below="@+id/ivImage"/>
+                android:layout_below="@+id/ivDishImageDetail"/>
 
             <ImageView
-                android:id="@+id/DishChef"
+                android:id="@+id/ivChefDetail"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
                 android:src="@drawable/seller"
-                android:layout_below="@+id/dishName"
+                android:layout_below="@+id/dishNameDetail"
                 android:layout_centerHorizontal="true" />
 
             <TextView
-                android:id="@+id/ChefName"
+                android:id="@+id/tvChefNameDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Peter Ekler"
                 android:textSize="20sp"
-                android:layout_below="@+id/DishChef"/>
+                android:layout_below="@+id/ivChefDetail"/>
 
             <TextView
-                android:id="@+id/dishPrice"
+                android:id="@+id/dishPriceDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
@@ -63,7 +63,7 @@
                 android:text="2800 Ft"
                 android:textSize="32sp"
                 android:textColor="@color/colorOrange"
-                android:layout_below="@+id/ChefName"/>
+                android:layout_below="@+id/tvChefNameDetail"/>
 
 
 
