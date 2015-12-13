@@ -29,6 +29,7 @@ import com.zoray.savori.ResultActivity;
 import com.zoray.savori.adapters.SearchRecyclerViewAdapter;
 import com.zoray.savori.data.Dish;
 import com.zoray.savori.data.SearchResult;
+import com.zoray.savori.data.Transaction;
 
 public class FragmentResultDetails extends Fragment {
 
@@ -57,7 +58,8 @@ public class FragmentResultDetails extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: actually place the order!
-
+                //Transaction newOrder = new Transaction();
+                //newOrder.put("price")
 
                 showSnackBarMessage("Your order has been placed!");
 
@@ -122,8 +124,6 @@ public class FragmentResultDetails extends Fragment {
                 }
             }
         });
-
-
         return rootView;
     }
 

@@ -15,6 +15,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="txt_hist_title">peter\'s speciality chicken leg</string>
+    <string name="txt_hist_desc">Order total: $15.75 • Dec 11, 12:00PM</string>
+    <string name="txt_search_result_detail">Click for more details</string>
+    <string name="empty_string" />
+    <string name="txt_place_order">Place Order</string>
 
 
 </resources>
