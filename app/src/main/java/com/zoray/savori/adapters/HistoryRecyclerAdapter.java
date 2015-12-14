@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zoray.savori.R;
+import com.zoray.savori.ResultActivity;
 import com.zoray.savori.data.Transaction;
 
 import java.text.SimpleDateFormat;
@@ -43,7 +44,7 @@ public class HistoryRecyclerAdapter
     public void onBindViewHolder(ViewHolder holder, int position) {
         Transaction row = transactions.get(position);
 
-        holder.title.setText(row.getFoodTitle());
+        holder.title.setText(ResultActivity.toTitleCase(row.getFoodTitle()));
         holder.desc.setText(convertToDesc(row));
 
         Bitmap food = BitmapFactory.decodeByteArray(row.getFoodImage(), 0,
