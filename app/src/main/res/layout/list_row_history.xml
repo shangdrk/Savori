@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/history_row_food"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="240dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ramen" />
 
@@ -34,8 +34,8 @@
     <ImageView
         android:id="@+id/history_row_seller"
         android:layout_width="56dp"
-        android:layout_height="60dp"
-        android:scaleType="fitCenter"
+        android:layout_height="64dp"
+        android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:src="@drawable/seller"
         android:layout_alignParentRight="true"

@@ -18,7 +18,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:alpha="0.8"
-        android:src="@drawable/seller"
+        android:src="@drawable/derek"
         android:layout_above="@+id/ivAcccountScrollView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
