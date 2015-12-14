@@ -20,12 +20,6 @@
                 android:scaleType="centerCrop" />
 
             <TextView
-                android:id="@+id/dishIdDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/empty_string" />
-
-            <TextView
                 android:id="@+id/dishNameDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

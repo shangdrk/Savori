@@ -32,14 +32,11 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        Log.d("mylog", "oncreate fragment");
-
         /*ActionBar acbar = getSupportActionBar();
         Log.d("mylog", "1");
         acbar.setDisplayHomeAsUpEnabled(true);
         Log.d("mylog", "2");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         Log.d("mylog", "get support action bar success");*/
 
         Intent intent = getIntent();
@@ -57,7 +54,7 @@ public class ResultActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 FragmentSearchResult fragment = new FragmentSearchResult();
 
-                if (e == null) {
+                if (e == null && objects.size()!=0) {
                     for (int i = 0; i <= objects.size() - 1; ++i) {
                         searchResultIDs.add(objects.get(i).getObjectId());
                     }
@@ -68,7 +65,6 @@ public class ResultActivity extends AppCompatActivity {
                 fragmentTransaction.add(R.id.FragmentContainer, fragment);
                 fragmentTransaction.commit();
             }
-
         });
 }
 
@@ -92,26 +88,22 @@ public class ResultActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FragmentResultDetails fragment = new FragmentResultDetails();
-
         fragmentTransaction.replace(R.id.FragmentContainer, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
     public ArrayList<String> getSearchResultIds(){
-
         return searchResultIDs;
     }
 
     public String getResultId(){
-
         return resultId;
     }
 
     public static String toTitleCase(String input) {
         StringBuilder titleCase = new StringBuilder();
         boolean nextTitleCase = true;
-
         for (char c : input.toCharArray()) {
             if (Character.isSpaceChar(c)) {
                 nextTitleCase = true;
@@ -119,10 +111,8 @@ public class ResultActivity extends AppCompatActivity {
                 c = Character.toTitleCase(c);
                 nextTitleCase = false;
             }
-
             titleCase.append(c);
         }
-
         return titleCase.toString();
     }
 }

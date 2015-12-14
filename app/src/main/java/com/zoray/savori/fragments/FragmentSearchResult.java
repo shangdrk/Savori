@@ -53,11 +53,10 @@ public class FragmentSearchResult extends Fragment {
         recyclerView.setAdapter(adapter);
 
         final TextView tvSearchError = (TextView) rootView.findViewById(R.id.tvSearchError);
-        if (errorTag){
+        if (errorTag) {
             tvSearchError.setVisibility(View.VISIBLE);
-
-        }else{
-            ArrayList<String> resultIDs = ((ResultActivity)getActivity()).getSearchResultIds();
+        } else {
+            ArrayList<String> resultIDs = ((ResultActivity) getActivity()).getSearchResultIds();
             list = new ArrayList<SearchResult>();
 
             for (int i = 0; i <= resultIDs.size() - 1; ++i) {
@@ -74,7 +73,7 @@ public class FragmentSearchResult extends Fragment {
                             byte[] imageBytes = new byte[0];
                             try {
                                 imageBytes = dishImage.getData();
-                            }catch (ParseException ex){
+                            } catch (ParseException ex) {
                                 ex.printStackTrace();
                             }
                             SearchResult searchResult = new SearchResult();
@@ -88,13 +87,7 @@ public class FragmentSearchResult extends Fragment {
                         } else {
 
                         }
-
-                        if (list.isEmpty()){
-                            tvSearchError.setVisibility(View.VISIBLE);
-                        }
-                        else {
-                            ((SearchRecyclerViewAdapter) recyclerView.getAdapter()).updateResultList(list);
-                        }
+                        ((SearchRecyclerViewAdapter) recyclerView.getAdapter()).updateResultList(list);
                     }
                 });
             }
@@ -102,8 +95,8 @@ public class FragmentSearchResult extends Fragment {
         return rootView;
     }
 
-    public void setErrorTag(boolean err){
-        if (err){
+    public void setErrorTag(boolean err) {
+        if (err) {
             errorTag = err;
         }
     }
