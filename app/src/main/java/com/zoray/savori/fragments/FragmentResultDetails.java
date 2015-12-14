@@ -23,6 +23,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.zoray.savori.MainActivity;
 import com.zoray.savori.R;
 import com.zoray.savori.ResultActivity;
@@ -30,6 +31,8 @@ import com.zoray.savori.adapters.SearchRecyclerViewAdapter;
 import com.zoray.savori.data.Dish;
 import com.zoray.savori.data.SearchResult;
 import com.zoray.savori.data.Transaction;
+
+import java.util.Date;
 
 public class FragmentResultDetails extends Fragment {
 
@@ -43,36 +46,22 @@ public class FragmentResultDetails extends Fragment {
         View rootView = inflater.inflate(
                 R.layout.fragment_result_details, container, false);
 
-        resultId = ((ResultActivity)getActivity()).getResultId();
+        resultId = ((ResultActivity) getActivity()).getResultId();
 
         layoutContent = (RelativeLayout) rootView.findViewById(R.id.layoutContent_Detail);
 
         final TextView tvDishName = (TextView) rootView.findViewById(R.id.dishNameDetail);
         final TextView tvDishPrice = (TextView) rootView.findViewById(R.id.dishPriceDetail);
-        final ImageView ivDish = (ImageView) rootView.findViewById(R.id.ivDishImageDetail) ;
+        final ImageView ivDish = (ImageView) rootView.findViewById(R.id.ivDishImageDetail);
         final TextView tvChefName = (TextView) rootView.findViewById(R.id.tvChefNameDetail);
         final ImageView ivChef = (ImageView) rootView.findViewById((R.id.ivChefDetail));
 
-        final TextView tvOrder = (TextView) rootView.findViewById(R.id.tvOrder);
-        tvOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: actually place the order!
-                //Transaction newOrder = new Transaction();
-                //newOrder.put("price")
-
-                showSnackBarMessage("Your order has been placed!");
-
-            }
-        });
-
-        ParseUser user = ParseUser.getCurrentUser();
+        final ParseUser user = ParseUser.getCurrentUser();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Dish");
         query.getInBackground(resultId, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
                 Dish dish = new Dish();
-
                 if (e == null) {
                     String dishName = ((ResultActivity) getActivity()).toTitleCase(object.getString("dishName"));
                     String dishPrice = object.getString("price");
@@ -82,7 +71,7 @@ public class FragmentResultDetails extends Fragment {
                     byte[] imageBytes = new byte[0];
                     try {
                         imageBytes = dishImage.getData();
-                    }catch (ParseException ex){
+                    } catch (ParseException ex) {
                         ex.printStackTrace();
                     }
 
@@ -90,7 +79,7 @@ public class FragmentResultDetails extends Fragment {
                     dish.setPrice(dishPrice);
                     dish.setParseID(parseId);
                     dish.setChef(chef);
-                    if (imageBytes!=null){
+                    if (imageBytes != null) {
                         dish.setDishImage(imageBytes);
                     }
                 } else {
@@ -99,15 +88,15 @@ public class FragmentResultDetails extends Fragment {
 
                 tvDishName.setText(dish.getDishName());
                 ParseUser chef = null;
-                try{
+                try {
                     chef = dish.getChef().fetchIfNeeded();
-                }catch (ParseException ex){
+                } catch (ParseException ex) {
                     ex.printStackTrace();
                 }
-                if (chef!= null){
+                if (chef != null) {
                     tvChefName.setText(chef.getString("firstName") + " " + chef.getString("lastName"));
                 }
-                tvDishPrice.setText(dish.getPrice());
+                tvDishPrice.setText(dish.getPrice() + " Ft");
                 Bitmap dishImageBmp = BitmapFactory.decodeByteArray(dish.getDishImage(), 0,
                         dish.getDishImage().length);
                 ivDish.setImageBitmap(dishImageBmp);
@@ -115,17 +104,65 @@ public class FragmentResultDetails extends Fragment {
                 byte[] chefImageBytes = new byte[0];
                 try {
                     chefImageBytes = chef.getParseFile("picture").getData();
-                }catch (ParseException ex){
+                } catch (ParseException ex) {
                     ex.printStackTrace();
                 }
-                if(chefImageBytes!= null){
-                    Bitmap chefImageBmp = BitmapFactory.decodeByteArray(chefImageBytes, 0, chefImageBytes.length );
+                if (chefImageBytes != null) {
+                    Bitmap chefImageBmp = BitmapFactory.decodeByteArray(chefImageBytes, 0, chefImageBytes.length);
                     ivChef.setImageBitmap(chefImageBmp);
                 }
             }
         });
+
+        final TextView tvOrder = (TextView) rootView.findViewById(R.id.tvOrder);
+        tvOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final ParseUser user2 = ParseUser.getCurrentUser();
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Dish");
+                query.getInBackground(resultId, new GetCallback<ParseObject>() {
+                            @Override
+                            public void done(ParseObject object, ParseException e) {
+                                if (e == null) {
+                                    //TODO: actually place the order!
+                                    Transaction newOrder = new Transaction();
+                                    newOrder.put("price", Integer.parseInt(object.getString("price")));
+                                    newOrder.put("buyer", user2);
+                /*ParseUser chef = null;
+                try{
+                    chef = dish.getChef().fetchIfNeeded();
+                }catch (ParseException ex){
+                    ex.printStackTrace();
+                }
+                if (chef!= null){
+                    newOrder.put("seller", chef);
+                }*/
+                                    newOrder.put("seller", object.get("chef"));
+                                    newOrder.put("food", object);
+                                    newOrder.put("orderTime", new Date());
+                                    newOrder.put("isFinished", false);
+                                    newOrder.saveInBackground(new SaveCallback() {
+                                        public void done(ParseException e) {
+                                            if (e == null) {
+                                                showSnackBarMessage("Your order has been placed!");
+                                            } else {
+                                                Log.d("mylog", e.getMessage());
+                                                showSnackBarMessage("Sorry, this item is not available for now.");
+
+                                            }
+                                        }
+                                    });
+
+                                }
+                            }
+                        }
+                );
+            }
+        });
         return rootView;
     }
+
 
     private void showSnackBarMessage(String message) {
         Snackbar.make(layoutContent,
@@ -135,6 +172,7 @@ public class FragmentResultDetails extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         }).show();

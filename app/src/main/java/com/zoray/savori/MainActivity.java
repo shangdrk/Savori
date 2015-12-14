@@ -9,6 +9,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Transaction> transactionList;
     private List<Transaction> upcomingRowList;
+
+    private byte[] profilePic;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void showResults(String keyword) {
         Intent intent  = new Intent(getApplicationContext(),ResultActivity.class);
         intent.putExtra("keyword", keyword);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
     }
 
@@ -93,7 +99,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inflateAccountView() {
-        // TODO: IMPLEMENTATION
+        try{
+            profilePic = ParseUser.getCurrentUser().fetchIfNeeded().getParseFile("picture").getData();
+            userName = ParseUser.getCurrentUser().get("firstName") + " " + ParseUser.getCurrentUser().get("lastName");
+        }catch (ParseException ex){
+            ex.printStackTrace();
+        }
     }
 
     public void changeTab(int positon) {
@@ -106,5 +117,13 @@ public class MainActivity extends AppCompatActivity {
 
     public List<Transaction> getUpcomingRowList() {
         return upcomingRowList;
+    }
+
+    public byte[] getProfilePic(){
+        return profilePic;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }
